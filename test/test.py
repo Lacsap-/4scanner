@@ -63,7 +63,7 @@ print("scanner.get_imageboard                                 -")
 print("scanner.get_keyword                                    -")
 print("--------------------------------------------------------")
 
-json_file = json.load(open("test_config.json"))
+json_file = json.load(open("test/test_config.json"))
 
 # Get a list of every search entry in the json file
 search_list = []
@@ -151,7 +151,7 @@ print("--------------------------------------------------------")
 print("Testing: dupecheck.hash_image                          -")
 print("--------------------------------------------------------")
 
-hash = dupecheck.hash_image("test_img.png")
+hash = dupecheck.hash_image("test/test_img.png")
 if hash != "b3ce9cb3aefc5e240b4295b406ce8b9a":
     print("hash should be b3ce9cb3aefc5e240b4295b406ce8b9a")
     exit(1)
