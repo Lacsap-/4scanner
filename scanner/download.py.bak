@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
 import argparse
-from .scanner import chan_info, dupecheck
+from scanner import chan_info, dupecheck
 import json
 import logging
 import os
 import sys
 import re
 import time
-import urllib.request, urllib.parse, urllib.error
+import urllib
 import http.client
 import requests
 import threading
@@ -31,7 +31,7 @@ def create_dir(directory):
             os.makedirs(directory)
         except OSError as e:  # folder may have been created by other threads
             if e.errno != 17:
-                print(("Cannot create {0}".format(directory)))
+                print("Cannot create {0}".format(directory))
                 exit(1)
             pass
 
@@ -176,7 +176,7 @@ def download_thread(thread_nb, board, chan, output_folder, folder, is_quiet, con
     # Getting info about the chan URL
     chan_url_info = chan_info.get_chan_info(chan)
     if not chan_url_info:
-        print(("{0} does not exist or is not supported.".format(chan)))
+        print("{0} does not exist or is not supported.".format(chan))
         exit(1)
     base_url = chan_url_info[0]
     image_url = chan_url_info[3]
@@ -210,7 +210,7 @@ def download_thread(thread_nb, board, chan, output_folder, folder, is_quiet, con
         try:
             thread_json = json.loads(load(thread_url, downloaded_log, img_hash_log, is_quiet))
         except ValueError:
-            print(("Problem connecting to {0}. stopping download for thread {1}".format(chan, thread_nb)))
+            print("Problem connecting to {0}. stopping download for thread {1}".format(chan, thread_nb))
             remove_tmp_files(img_hash_log, downloaded_log)
             exit(1)
 

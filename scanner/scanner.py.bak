@@ -4,7 +4,7 @@ import time
 import json
 import os
 import re
-from .scanner import download, chan_info
+from scanner import download, chan_info
 import subprocess
 import urllib.request
 import threading
@@ -123,7 +123,7 @@ def get_imageboard(search):
     if 'imageboard' in search:
         chan = search["imageboard"]
         if not chan_info.get_chan_info(chan):
-            print(("{0} is not supported.".format(chan)))
+            print("{0} is not supported.".format(chan))
             exit(1)
     else:
         # default
@@ -153,7 +153,7 @@ def scan(keywords_file, output, log_file, quota_mb, wait_time):
             check_quota(output, quota_mb)
 
         curr_time = time.strftime('%d%b%Y-%H%M%S')
-        print(("{0} Searching threads...".format(curr_time)))
+        print("{0} Searching threads...".format(curr_time))
 
         dl_log = open("{0}/{1}".format(output, log_file), "a")
         dl_log.write(time.strftime('Execution date {0}\n'.format(curr_time)))
@@ -192,12 +192,12 @@ def scan(keywords_file, output, log_file, quota_mb, wait_time):
                                             condition, dupe_check)
                             add_to_downloaded(thread_id, log_file, output)
             except urllib.error.HTTPError as err:
-                print(("Error while opening {0} catalog page. "
-                      "Retrying during next scan.".format(board)))
+                print("Error while opening {0} catalog page. "
+                      "Retrying during next scan.".format(board))
                 pass
 
         active_downloads = threading.active_count()-1
-        print(("{0} threads currently downloading.".format(active_downloads)))
-        print(("Searching again in {0} minutes!"
-              .format(str(int(wait_time / 60)))))
+        print("{0} threads currently downloading.".format(active_downloads))
+        print("Searching again in {0} minutes!"
+              .format(str(int(wait_time / 60))))
         time.sleep(wait_time)
