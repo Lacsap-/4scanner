@@ -140,6 +140,7 @@ def meet_dl_condition(post, condition):
 
 
 def remove_if_duplicate(img_path, img_hash_log):
+    from scanner import dupecheck
     if img_path:
         img_hash = dupecheck.hash_image(img_path)
         if dupecheck.is_duplicate(img_hash_log, img_hash):
