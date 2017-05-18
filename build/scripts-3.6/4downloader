@@ -1,0 +1,100 @@
+#!/usr/local/opt/python3/bin/python3.6
+
+import argparse
+import os
+import scanner
+from scanner import download
+
+
+def condition_check(args):
+    # Checking conditions
+    condition = {}
+    if args.extension:
+        condition["ext"] = args.extension.split(',')
+    else:
+        condition["ext"] = False
+
+    if args.filename:
+        condition["filename"] = args.filename.split(',')
+    else:
+        condition["filename"] = False
+
+    if args.width:
+        condition["width"] = args.width
+    else:
+        condition["width"] = False
+
+    if args.height:
+        condition["height"] = args.height
+    else:
+        condition["height"] = False
+
+    return condition
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('thread', help='url of the thread')
+    parser.add_argument('folder', nargs='?',
+                        help='Change the folder name where images are downloaded')
+    parser.add_argument("-i", "--imageboard",
+                        help="choose the imageboard you from to download from."
+                        " Default to 4chan")
+    parser.add_argument("-H", "--height",
+                        help="Specify height. format: >256, <256 or =256")
+    parser.add_argument("-W", "--width",
+                        help="Specify width. format: >256, <256 or =256")
+    parser.add_argument("-E", "--extension",
+                        help="""Download only specific(s) extension(s). Ex: .jpg
+                             (can be multiple extensions separated by a ,)""")
+    parser.add_argument("-f", "--filename",
+                        help="""Download only images containing the string. Ex: filename_1
+                             (can be multiple filenames separated by a ,)""")
+    parser.add_argument("-d", "-disable-dupe-check", action='store_true',
+                        help="with -d 4scanner will download images even if a duplicate exist in output folder.")
+    parser.add_argument("-q", "--quiet", action='store_true', help="quiet")
+    parser.add_argument("-o", "--output", help="Specify output folder")
+    args = parser.parse_args()
+
+    print(args.thread)
+    thread_nb = str(args.thread.split('/')[5].split('.')[0])
+    board = str(args.thread.split('/')[3])
+
+    condition = condition_check(args)
+
+    quiet = False
+    if args.quiet:
+        quiet = True
+
+    if args.folder is not None:
+        folder = ''.join(args.folder)
+    else:
+        folder = thread_nb
+
+    if args.output is not None:
+        output = args.output
+        if not os.path.exists(output):
+            print("{0} Does not exist.".format(output))
+            exit(1)
+    else:
+        output = os.getcwd()
+
+    if args.imageboard:
+        chan = args.imageboard
+    else:
+        chan = "4chan"
+
+    # Check if we download duplicate pictures
+    if not args.d:
+        dupe_check = True
+    else:
+        dupe_check = False
+
+    download.download_thread(thread_nb, board, chan, output, folder, quiet, condition, dupe_check)
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass

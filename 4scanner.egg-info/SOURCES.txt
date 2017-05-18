@@ -1,0 +1,16 @@
+MANIFEST.in
+README.md
+setup.py
+4scanner.egg-info/PKG-INFO
+4scanner.egg-info/SOURCES.txt
+4scanner.egg-info/dependency_links.txt
+4scanner.egg-info/requires.txt
+4scanner.egg-info/top_level.txt
+bin/4downloader
+bin/4scanner
+scanner/__init__.py
+scanner/chan_info.py
+scanner/download.py
+scanner/dupecheck.py
+scanner/scann.py
+test/test.py

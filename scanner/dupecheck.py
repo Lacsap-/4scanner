@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
-
 import hashlib
 import os
-
 
 def hash_image(img_location):
     with open(img_location, 'rb') as img:

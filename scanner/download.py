@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
-
 import argparse
-from .scanner import chan_info, dupecheck
 import json
 import logging
 import os
 import sys
 import re
 import time
+import requests
 import urllib.request, urllib.parse, urllib.error
 import http.client
-import requests
 import threading
 import shutil
+from scanner import dupecheck 
 
 
 def load(url, downloaded_log, img_hash_log, is_quiet):
