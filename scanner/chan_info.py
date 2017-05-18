@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 def get_chan_info(chan):
     if chan == "4chan":
         # 4chan informations

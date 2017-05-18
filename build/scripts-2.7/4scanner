@@ -1,0 +1,64 @@
+#!/usr/bin/python
+
+import argparse
+import os
+import scanner
+from scanner import scanner
+import time
+
+
+def main():
+    # Arguments parsing and validation
+    parser = argparse.ArgumentParser()
+    parser.add_argument("keywords_file",
+                        help="file with the keywords to search for")
+    parser.add_argument("-o", "--output", help="Specify output folder")
+    parser.add_argument("-w", "--wait-time",
+                        help="Time to wait between each scan in minutes. "
+                             "Default is 5 minutes")
+    parser.add_argument("-q", "--quota",
+                        help="Exit when specified size quota "
+                             "is exceeded. Ex: 500MB, 30GB etc...")
+    args = parser.parse_args()
+
+    # Checking keywords file
+    if not os.path.isfile(args.keywords_file):
+            print("Keywords file does not exist...")
+            exit(1)
+
+    if args.output:
+        output = args.output
+        if not os.path.exists(output):
+            print("{0} Does not exist.".format(output))
+            exit(1)
+    else:
+        output = os.getcwd()
+
+    # Checking for quota
+    if args.quota:
+        if "gb" in args.quota.lower():
+            quota_mb = args.quota.lower().split('g')[0] * 1000
+        elif "mb" in args.quota.lower():
+            quota_mb = args.quota.lower().split('m')[0]
+        else:
+            print("Quota format invalid. Valid example: 20GB, 700MB etc...")
+            exit(1)
+    else:
+        quota_mb = False
+
+    # Checking for sleep time
+    if args.wait_time:
+        wait_time = args.wait_time * 60
+    else:
+        wait_time = 300
+
+    log_file = "downloaded-{0}.txt".format(time.strftime('%d%m%Y_%H%M'))
+
+    scanner.scan(args.keywords_file, output, log_file, quota_mb, wait_time)
+
+
+if __name__ == '__main__':
+    try:
+            main()
+    except KeyboardInterrupt:
+        pass

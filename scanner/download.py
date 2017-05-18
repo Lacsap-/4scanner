@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
-
 import argparse
-from scanner import chan_info, dupecheck
 import json
 import logging
 import os
 import sys
 import re
 import time
-import urllib
-import http.client
 import requests
+import urllib.request, urllib.parse, urllib.error
+import http.client
 import threading
 import shutil
+from scanner import dupecheck 
 
 
 def load(url, downloaded_log, img_hash_log, is_quiet):
@@ -141,6 +140,7 @@ def meet_dl_condition(post, condition):
 
 
 def remove_if_duplicate(img_path, img_hash_log):
+    from scanner import dupecheck
     if img_path:
         img_hash = dupecheck.hash_image(img_path)
         if dupecheck.is_duplicate(img_hash_log, img_hash):
