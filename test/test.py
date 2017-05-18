@@ -10,7 +10,7 @@ print("--------------------------------------------------------")
 print("Testing: scanner.get_catalog_json                      -")
 print("--------------------------------------------------------")
 catalog_json = scanner.get_catalog_json("a", "4chan")
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("Testing: scanner.scan_thread                           -")
@@ -20,7 +20,7 @@ list_of_threads = scanner.scan_thread("anime", catalog_json)
 for i in list_of_threads:
      print(i)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("!!! scanner.download_thread not tested yet !!!         -")
@@ -32,7 +32,7 @@ print("--------------------------------------------------------")
 
 scanner.add_to_downloaded("139294614", "log", ".")
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("Testing: scanner.folder_size_mb                        -")
@@ -49,7 +49,7 @@ if int(size) != 15:
     print(size)
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("!!! scanner.check_quota not tested yet !!!             -")
@@ -137,13 +137,13 @@ if keyword2 != ['keyword']:
     print("keyword2 should be equal to ['keyword']")
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("!!! scanner.scan not tested yet !!!                    -")
 print("--------------------------------------------------------")
 
-print(('\x1b[6;30;42m' + 'All test OK for scanner.py' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'All test OK for scanner.py' + '\x1b[0m')
 
 print("Testing dupecheck.py")
 
@@ -156,7 +156,7 @@ if hash != "b3ce9cb3aefc5e240b4295b406ce8b9a":
     print("hash should be b3ce9cb3aefc5e240b4295b406ce8b9a")
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("Testing: dupecheck.add_to_file                         -")
@@ -170,7 +170,7 @@ if 'some_hash_to_write' not in open("hash_test_file.txt").read():
     print("the string was not written to hash_test_file.txt")
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("Testing: dupecheck.is_duplicate                        -")
@@ -190,7 +190,7 @@ if is_dupe:
     print("is_dupe should be False")
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("Testing: dupecheck.hash_img_in_folder                  -")
@@ -220,9 +220,9 @@ if 'not checking for duplicate' not in open("hash_test_file2.txt").read():
     print("'not checking for duplicate' should be in hash_test_file2.txt")
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
-print(('\x1b[6;30;42m' + 'All test OK for dupecheck.py' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'All test OK for dupecheck.py' + '\x1b[0m')
 
 print("Testing chan_info.py")
 
@@ -282,9 +282,9 @@ if info_uboachan[3] != "https://uboachan.net/":
     print("chan_image_base_url wrong for uboachan")
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
-print(('\x1b[6;30;42m' + 'All test OK for chan_info.py' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'All test OK for chan_info.py' + '\x1b[0m')
 
 print("Testing download.py")
 
@@ -305,7 +305,7 @@ if not os.path.exists("test_create_dir"):
 # Testing again because the function should not crash if folder already exist
 download.create_dir("test_create_dir")
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("Testing: download.add_to_downloaded_log                -")
@@ -328,7 +328,7 @@ if downloaded:
     print("'returned' should be False")
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("Testing: download.extension_condition                  -")
@@ -342,7 +342,7 @@ if download.extension_condition([".jpg"], ".png"):
     print("different extension should return False")
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("Testing: download.filename_condition                   -")
@@ -356,7 +356,7 @@ if download.filename_condition(["PIC"], "IMG_2345.jpg"):
     print("PIC is not in IMG_2345, should return False")
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("Testing: download.width_condition                      -")
@@ -386,7 +386,7 @@ if download.width_condition("<100", 101):
     print("101 is not lower than 100, should be False")
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 
 print("--------------------------------------------------------")
@@ -409,7 +409,7 @@ if download.all_condition_check(all_false):
     print("all conditions are False, should return False")
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("!!! download.meet_dl_condition not tested yet !!!      -")
@@ -436,7 +436,7 @@ if not os.path.isfile("not_duplicate.png"):
     print("not_duplicate.png should not have been deleted.")
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("Testing: download.download_image                       -")
@@ -450,11 +450,11 @@ if not os.path.isfile(file_path):
     print("4scanner128.png should have been downloaded.")
     exit(1)
 
-print(('\x1b[6;30;42m' + 'OK' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'OK' + '\x1b[0m')
 
 print("--------------------------------------------------------")
 print("!!! download.download_thread not tested yet !!!        -")
 print("--------------------------------------------------------")
 
-print(('\x1b[6;30;42m' + 'All test OK for download.py' + '\x1b[0m'))
-print(('\x1b[6;30;42m' + 'SUCCESS' + '\x1b[0m'))
+print('\x1b[6;30;42m' + 'All test OK for download.py' + '\x1b[0m')
+print('\x1b[6;30;42m' + 'SUCCESS' + '\x1b[0m')
